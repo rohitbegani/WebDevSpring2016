@@ -1,0 +1,61 @@
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    $(init);
+
+    var p1Showing = true;
+    var p2Showing = true;
+
+
+    function init() {
+        $("#t1").click(t1Click);
+        $("#t2").click(t2Click);
+    }
+
+    function t1Click(){
+//        alert("t1");
+//        $("#p1").hide();
+        if(p1Showing){
+            $("#p1").hide();
+            p1Showing = false;
+        }
+        else{
+            $("#p1").show();
+            p1Showing = true;
+        }
+    }
+
+    function t2Click(){
+//        alert("t2");
+//        $("#p2").hide();
+        if(p2Showing){
+            $("#p2").hide();
+            p2Showing = false;
+        }
+        else{
+            $("#p2").show();
+            p2Showing = true;
+        }
+    }
+</script>
+<h1>
+    Showing and hiding content with jQuery!
+</h1>
+
+<h2 id="t1">
+    Title 1
+</h2>
+<p id="p1">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Morbi sollicitudin condimentum bibendum. Integer sagittis porta ipsum porta malesuada.
+    Suspendisse et sem sit amet libero rhoncus vehicula in et justo. Fusce pulvinar dui quis massa
+    fermentum, ut tristique dui pulvinar.
+</p>
+<h2 id="t2">
+    Title 2
+</h2>
+<p id="p2">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Morbi sollicitudin condimentum bibendum. Integer sagittis porta ipsum porta malesuada.
+    Suspendisse et sem sit amet libero rhoncus vehicula in et justo. Fusce pulvinar dui quis massa
+    fermentum, ut tristique dui pulvinar.
+</p>
