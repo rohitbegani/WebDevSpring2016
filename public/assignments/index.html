@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="FormBuilderApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="icon" href="../../favicon.ico">-->
+
+    <title>Form Maker</title>
+</head>
+
+<body>
+
+<div class="container-fluid" ng-controller="MainController">
+    <div class="row" ng-view>
+        <div ng-include="views/header/header.view.html"></div>
+        <div ng-include="views/sidebar/sidebar.view.html"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Welcome!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit, nulla et condimentum suscipit, mi nisl mattis quam, sed faucibus est urna commodo turpis. Sed tortor metus, pharetra vitae dui id, pellentesque posuere quam. In hac habitasse platea dictumst. Etiam convallis, urna eget consequat posuere, orci diam aliquam felis, a scelerisque massa ante condimentum sem. Etiam sollicitudin feugiat magna, in condimentum sapien vestibulum quis. Aliquam sagittis, nunc a pretium porta, tellus velit convallis nisi, et finibus risus mi a lectus. In quis dui in arcu vehicula euismod nec eget dolor. Maecenas vel nisl nec dolor auctor ultricies semper ut nulla. Nam sed dui et est tempor scelerisque. Fusce laoreet faucibus lectus, non pellentesque ex accumsan maximus. Ut vestibulum molestie magna nec luctus. Cras ipsum eros, convallis sit amet semper ut, placerat luctus nisl.
+
+            </p>
+
+
+            <!-- Bootstrap core JavaScript
+            ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+            <script src="app.js"></script>
+            <script src="config.js"></script>
+            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+            <link href="../CSS/dashboard.css" rel="stylesheet">
+</body>
+</html>

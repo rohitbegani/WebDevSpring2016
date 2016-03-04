@@ -4,13 +4,31 @@
     <meta charset="utf-8">
     <title>Movie App</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
         <h1>Movie Information Database</h1>
-        <input id="movieTitleText" class="form-control" placeholder="Enter the name of a movie" />
+        <input value="Star Wars" id="movieTitleText" class="form-control" placeholder="Enter the name of a movie" />
         <button id="searchBtn" type="button" class="btn btn-primary btn-block">Submit</button>
+
+    <h2>Search Results</h2>
+
+    <table id="searchResults" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Poster</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>IMDb ID</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
     </div>
+
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="js/app.js"></script>
 </body>
