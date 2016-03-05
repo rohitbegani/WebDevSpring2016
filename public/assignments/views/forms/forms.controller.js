@@ -1,4 +1,4 @@
-(function() {
+(function () {
     "use strict";
     angular
         .module("FormBuilderApp")
@@ -54,7 +54,7 @@
             var selectedForm = $scope.forms[index];
             $scope.form = {
                 _id : selectedForm._id,
-                title: selectedForm.title,
+                name: selectedForm.name,
                 userId: selectedForm.userId
             };
         }

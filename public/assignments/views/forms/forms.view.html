@@ -6,11 +6,11 @@
             <h1 class="page-header">Forms</h1>
             <ul class="nav nav-tabs">
                 <li role="presentation"
-                    ng-class={'active':location.url()==='/forms'}>
+                    data-ng-class={'active':location.url()==='/forms'}>
                     <a>Forms</a>
                 </li>
                 <li role="presentation"
-                    ng-class={'active':location.url()==='/fields'}>
+                    data-ng-class={'active':location.url()==='/fields'}>
                     <a href="#/fields">Fields</a>
                 </li>
             </ul>
@@ -27,13 +27,16 @@
                     <th>&nbsp;</th>
                 </tr>
                 <tr class="stopWrap">
-                    <td><input ng-model="form.title" type="text" class="form-control" placeholder="Name"></td>
+                    <td><input data-ng-model="form.name"
+                               type="text"
+                               class="form-control"
+                               placeholder="Name"></td>
                     <td>
-                        <button ng-click="addForm(form)"
+                        <button data-ng-click="addForm(form)"
                                 type="button"
                                 class="btn btn-primary glyphicon glyphicon-plus">
                         </button>
-                        <button ng-click="updateForm(form)"
+                        <button data-ng-click="updateForm(form)"
                                 type="button"
                                 class="btn btn-success glyphicon glyphicon-ok">
                         </button>
@@ -41,14 +44,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="form in forms">
-                    <td>{{form.title}}</td>
+                <tr data-ng-repeat="form in forms">
+                    <td>{{form.name}}</td>
                     <td>
-                        <button ng-click="deleteForm($index)"
+                        <button data-ng-click="deleteForm($index)"
                                 type="button"
                                 class="btn btn-danger glyphicon glyphicon-remove">
                         </button>
-                        <button ng-click="selectForm($index)"
+                        <button data-ng-click="selectForm($index)"
                                 type="button"
                                 class="btn btn-success glyphicon glyphicon-pencil">
                         </button>
@@ -56,4 +59,7 @@
                 </tr>
                 </tbody>
             </table>
+            </div>
+        </div>
+    </div>
 </body>

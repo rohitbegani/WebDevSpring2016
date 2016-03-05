@@ -1,4 +1,3 @@
-
 (function() {
     "use strict";
     angular
@@ -10,8 +9,8 @@
         $scope.location = $location;
 
         function logout() {
-            $rootScope.currentUser = null;
-            $location.url("/home");
+            delete $rootScope.currentUser;
+            $location.url("/");
         }
     }
 })();

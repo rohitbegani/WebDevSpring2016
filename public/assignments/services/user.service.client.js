@@ -2,64 +2,83 @@
     "use strict";
     angular
         .module("FormBuilderApp")
-        .factory("FormService", FormService);
+        .factory("UserService", UserService);
 
-    function FormService() {
-        var forms = [];
-        forms = [
-            {"_id": "000", "title": "Contacts", "userId": 123},
-            {"_id": "010", "title": "ToDo",     "userId": 123},
-            {"_id": "020", "title": "CDs",      "userId": 234}
+    function UserService() {
+        var users = [];
+        users = [
+            {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
+                "username":"alice",  "password":"alice",   "roles": ["student"]		},
+            {	"_id":234, "firstName":"Bob",              "lastName":"Hope",
+                "username":"bob",    "password":"bob",     "roles": ["admin"]		},
+            {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
+                "username":"charlie","password":"charlie", "roles": ["faculty"]		},
+            {	"_id":456, "firstName":"Dan",              "lastName":"Craig",
+                "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"]},
+            {	"_id":567, "firstName":"Edward",           "lastName":"Norton",
+                "username":"ed",     "password":"ed",      "roles": ["student"]		}
         ];
 
+
         var api = {
-            createFormForUser : createFormForUser,
-            findAllFormsForUser : findAllFormsForUser,
-            deleteFormById : deleteFormById,
-            updateFormById : updateFormById
+            findUserByCredentials: findUserByCredentials,
+            findAllUsers: findAllUsers,
+            createUser: createUser,
+            deleteUserById: deleteUserById,
+            updateUser: updateUser
         };
 
         return api;
 
-        function createFormForUser(userId, form, callback) {
+
+        function findUserByCredentials(username, password, callback) {
+            var loggedinUser = null;
+            for (var user in users){
+                if(users[user].username === username && users[user].password === password){
+                    loggedinUser = users[user];
+                }
+                callback(loggedinUser);
+            }
+        }
+
+        function findAllUsers(callback){
+            callback(users);
+        }
+
+        function createUser(user, callback) {
             var _id = (new Date).getTime();
-            var title = form.title;
-            var newForm = {_id: _id, title: title, userId: userId};
-            forms.push(newForm);
-            callback(newForm);
+            var username = user.username;
+            var password = user.password;
+
+            var newUser = {_id : _id,
+                username : username,
+                password : password
+            };
+
+            users.push(newUser);
+            callback(newUser);
         }
 
-        function findAllFormsForUser(userId, callback) {
-            var formsList = [];
-            for (var form in forms) {
-                if (forms[form].userId === userId) {
-                    formsList.push(forms[form]);
+        function deleteUserById(userId, callback) {
+            for (var user in users) {
+                if (users[user]._id === userId) {
+                    var index = users.indexOf(users[user]);
+                    users.splice(index, 1);
                 }
             }
-            callback(formsList);
+            callback(users);
         }
 
-        function deleteFormById(formId, callback) {
-            for (var form in forms) {
-                if (forms[form]._id === formId) {
-                    var index = forms.indexOf(forms[form]);
-                    forms.splice(index, 1);
+        function updateUser(userId, user, callback) {
+            for (var u in users) {
+                if (users[u]._id === userId) {
+                    users[u] = {_id : userId,
+                        firstName : user.firstName, lastName : user.lastName,
+                        username : user.username, password : user.password,
+                        roles : user.roles, email : user.email};
                 }
             }
-            callback(forms);
-        }
-
-        function updateFormById(formId, newForm, callback) {
-            for (var form in forms) {
-                if (forms[form]._id === formId) {
-                    forms[form] = {
-                        _id : formId,
-                        title: newForm.title,
-                        userId: newForm.userId
-                    };
-                }
-            }
-            callback(newForm);
+            callback(user);
         }
     }
 })();

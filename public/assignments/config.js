@@ -37,6 +37,6 @@
             })
             .otherwise({
                 redirectTo: "/"
-            })
+            });
     }
 })();

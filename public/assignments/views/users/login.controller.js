@@ -1,27 +1,25 @@
-(function () {
+(function() {
+    "use strict";
     angular
         .module("FormBuilderApp")
-        .controller("LoginController", LoginController)
+        .controller("LoginController", LoginController);
 
-    function LoginController(UserService, $scope, $location, $rootScope) {
+    LoginController.$inject = ['$scope', '$rootScope', '$location', 'UserService'];
 
-        //Event Handlers Decelerations
-        $scope.login = Login;
+    function LoginController($scope, $rootScope, $location, UserService) {
+        $scope.login = login;
 
-        //Event Handlers Implementations
-        function Login(user_name, user_password) {
-            UserService.findUserByCredentials(user_name, user_password, render);
-
-            function render(response) {
-                if (response != null) {
-                    //Storing the user in the Root Scope
-                    $rootScope.user = response;
-                    // Navigating to the Profile Page of this particular User
-                    $location.url("/profile/");
-                }
-            }
-        };
-
-
-    };
+        function login(user) {
+            UserService.findUserByCredentials(user.username, user.password,
+                function(response) {
+                    if (response) {
+                        $rootScope.currentUser = response;
+                        $location.url("/profile");
+                    }
+                    else{
+                        $scope.message = "Incorrect username/password";
+                    }
+                });
+        }
+    }
 })();

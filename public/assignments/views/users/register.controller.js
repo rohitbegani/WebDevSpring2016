@@ -1,34 +1,20 @@
-(function () {
+(function() {
+    "use strict";
     angular
         .module("FormBuilderApp")
-        .controller("RegisterController", RegisterController)
+        .controller("RegisterController", RegisterController);
 
-    function RegisterController(UserService, $scope, $rootScope, $location) {
+    RegisterController.$inject = ['$scope', '$rootScope', '$location', 'UserService'];
 
-        //Event Handlers Decelerations
-        $scope.register = Register;
+    function RegisterController($scope, $rootScope, $location, UserService) {
+        $scope.register = register;
 
-        //Event Handlers Implementations
-        function Register() {
-
-            var form_user = {
-                username: $scope.form.user_name,
-                password: $scope.form.user_password,
-                repeat_password: $scope.form.user_password_repeat,
-                email: $scope.form.user_email
-            };
-
-            UserService.createUser(form_user, userRegisterCallback)
-
-            function userRegisterCallback(response) {
-                if (response != null) {
-                    //Storing the user in the Root Scope
-                    $rootScope.user = response;
-                    // Navigating to the Profile Page of this particular User
-                    $location.url("/profile/");
-                }
-            };
-        };
-
-    };
+        function register(user) {
+            UserService.createUser(user,
+                function (response) {
+                    $rootScope.currentUser = response;
+                });
+            $location.url("/profile");
+        }
+    }
 })();
