@@ -1,4 +1,4 @@
-<nav data-ng-class="HeaderController" class="navbar navbar-inverse navbar-fixed-top">
+<nav data-ng-controller="HeaderController" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button"
@@ -20,7 +20,7 @@
                 <li ng-hide="currentUser" ng-class="{'active': location.url()=== '/login'}"><a href="#/login">Login</a></li>
                 <li ng-show="currentUser" ng-class="{'active': location.url()=== '/profile'}"><a href="#/profile">{{currentUser.username}}</a></li>
                 <li ng-show="currentUser && currentUser.roles.indexOf('admin') > -1" ng-class="{'active': location.url()=== '/admin'}"><a href="#/admin">Admin</a></li>
-                <li ng-show="currentUser && currentUser._id"><a ng-click="logout()" href="#/">Logout</a></li>
+                <li ng-show="currentUser && currentUser._id"><a ng-click="logout()">Logout</a></li>
             </ul>
         </div>
     </div>
