@@ -17,11 +17,13 @@ module.exports = function(app) {
     return api;
 
     function findFormByTitle(title) {
-        for (var form in form_data) {
-            if (form_data(form).title === title){
-                return form_data(form)
+        var form = null;
+
+        for (var f in form_data) {
+            if (form_data[f].title === title){
+                form = form_data[f];
+                return form;
             }
         }
-        return null;
     }
 }();
