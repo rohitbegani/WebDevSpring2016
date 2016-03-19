@@ -6,12 +6,20 @@ var form_data = require("./form.mock.js");
 module.exports = function(app) {
     "use strict";
     var api = {
+        // form
         createForm: createForm,
         findAllForms: findAllForms,
         findFormById: findFormById,
         findFormByTitle: findFormByTitle,
         updateFormById: updateFormById,
-        deleteFormById: deleteFormById
+        deleteFormById: deleteFormById,
+
+        // fields
+        findFields: findFields,
+        findFieldById: findFieldById,
+        deleteFieldById: deleteFieldById,
+        createField: createField,
+        updateField: updateField
     };
 
     return api;
