@@ -35,6 +35,10 @@
                 templateUrl: "views/users/login.view.html",
                 controller: "LoginController"
             })
+            .when("/field", {
+                templateUrl: "views/forms/field.view.html",
+                controller: "FieldController"
+            })
             .otherwise({
                 redirectTo: "/"
             });

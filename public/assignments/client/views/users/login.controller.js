@@ -11,12 +11,11 @@
 
         function login(user) {
             UserService.findUserByCredentials(user.username, user.password,
-                function(response) {
+                function (response) {
                     if (response) {
                         $rootScope.currentUser = response;
                         $location.url("/profile");
-                    }
-                    else{
+                    } else {
                         $scope.message = "Incorrect username/password";
                     }
                 });

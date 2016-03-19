@@ -1,65 +1,44 @@
-<body>
-
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Forms</h1>
-            <ul class="nav nav-tabs">
-                <li role="presentation"
-                    data-ng-class={'active':location.url()==='/forms'}>
-                    <a>Forms</a>
-                </li>
-                <li role="presentation"
-                    data-ng-class={'active':location.url()==='/fields'}>
-                    <a href="#/fields">Fields</a>
-                </li>
-            </ul>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>
-                        <span class="glyphicon glyphicon-triangle-bottom"></span>
-                        Form Name</th>
-                    <th>
-                        <span class="glyphicon glyphicon-triangle-bottom"></span>
-                        Action</th>
-                    <th>
-                    <th>&nbsp;</th>
-                </tr>
-                <tr class="stopWrap">
-                    <td><input data-ng-model="form.name"
-                               type="text"
-                               class="form-control"
-                               placeholder="Name"></td>
-                    <td>
-                        <button data-ng-click="addForm(form)"
-                                type="button"
-                                class="btn btn-primary glyphicon glyphicon-plus">
-                        </button>
-                        <button data-ng-click="updateForm(form)"
-                                type="button"
-                                class="btn btn-success glyphicon glyphicon-ok">
-                        </button>
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr data-ng-repeat="form in forms">
-                    <td>{{form.name}}</td>
-                    <td>
-                        <button data-ng-click="deleteForm($index)"
-                                type="button"
-                                class="btn btn-danger glyphicon glyphicon-remove">
-                        </button>
-                        <button data-ng-click="selectForm($index)"
-                                type="button"
-                                class="btn btn-success glyphicon glyphicon-pencil">
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            </div>
-        </div>
+    <h2 class="h2 sub-header">Forms</h2>
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Forms</a></li>
+        <li role="presentation"><a href="#/form/:id/field">Fields</a></li>
+    </ul>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><span class="glyphicon glyphicon-triangle-bottom"></span> Form Name</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom"></span> Actions</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="newFormName" ng-model="form.title" class="form-control" placeholder="Form Name"></td>
+                <td  class="align-right">
+                    <button class="btn btn-success" ng-click="updateForm(form)">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    <button class="btn btn-primary" ng-click="addForm()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="form in forms">
+                <td><a href="" ng-click="openField(form)">{{form.title}}</a></td>
+                <td class="align-right">
+                    <button class="btn btn-warning" ng-click="selectForm($index)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button class="btn btn-danger" ng-click="deleteForm($index)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</body>
+</div>

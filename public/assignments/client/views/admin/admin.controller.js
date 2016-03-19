@@ -5,6 +5,5 @@
         .controller("AdminController", AdminController);
 
     function AdminController($scope){
-
     }
 })();
