@@ -15,6 +15,8 @@
             updateUser: updateUser
         };
 
+        return api;
+
         function findUserByUsername(username) {
             return $http.get("/api/assignment/user?username=" + username);
         }

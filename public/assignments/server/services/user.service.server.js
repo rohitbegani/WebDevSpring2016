@@ -13,7 +13,7 @@ module.exports = function(app, userModel) {
     app.delete("/api/assignment/user/:userId", deleteUserById);
 
     function createUser(req, res) {
-        var newUser = UserModel.createUser(req.body);
+        var newUser = userModel.createUser(req.body);
         res.json(newUser);
     }
 
@@ -25,20 +25,20 @@ module.exports = function(app, userModel) {
                 findUserByUsername(req, res);
             }
         } else {
-            var users = UserModel.findAllUsers();
+            var users = userModel.findAllUsers();
             res.json(users);
         }
     }
 
     function findUserById(req, res) {
         var userId = parseInt(req.params.id);
-        var user = UserModel.findUserById(userId);
+        var user = userModel.findUserById(userId);
         res.json(user);
     }
 
     function findUserByUsername(req, res) {
         var username = req.query.username;
-        var user = UserModel.findUserByUsername(username);
+        var user = userModel.findUserByUsername(username);
         res.json(user);
     }
 
@@ -47,19 +47,19 @@ module.exports = function(app, userModel) {
             username: req.query.username,
             password: req.query.password
         };
-        var user = UserModel.findUserByCredentials(credentials);
+        var user = userModel.findUserByCredentials(credentials);
         res.json(user);
     }
 
     function updateUser(req, res) {
         var userId = parseInt(req.params.id);
-        var newUser = UserModel.updateUser(userId, req.body);
+        var newUser = userModel.updateUser(userId, req.body);
         res.json(newUser);
     }
 
     function deleteUserById(req, res) {
         var userId = parseInt(req.params.id);
-        UserModel.deleteUser(userId);
+        userModel.deleteUser(userId);
         res.send(200);
     }
 

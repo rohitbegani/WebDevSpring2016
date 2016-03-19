@@ -11,27 +11,27 @@ module.exports = function(app, formModel) {
     app.put('/api/assignment/form/:formId/field/:fieldId', updateField);
 
     function findFields(req, res) {
-        var fields = FormModel.findAllFieldsByFormId(req.params.formId);
+        var fields = formModel.findAllFieldsByFormId(req.params.formId);
         res.json(fields);
     }
 
     function findFieldById(req, res) {
-        var field = FormModel.findFieldByFormId(req.params.formId, req.params.fieldId);
+        var field = formModel.findFieldByFormId(req.params.formId, req.params.fieldId);
         res.json(field);
     }
 
     function deleteFieldById(req, res) {
-        FormModel.deleteFieldById(req.params.formId, req.params.fieldId);
+        formModel.deleteFieldById(req.params.formId, req.params.fieldId);
         res.send(200);
     }
 
     function createField(req, res) {
-        var newFields = FormModel.createFieldById(req.params.formId, req.body);
+        var newFields = formModel.createFieldById(req.params.formId, req.body);
         res.json(newFields);
     }
 
     function updateField(req, res) {
-        var newField = FormModel.updateFieldById(req.params.formId, req.params.fieldId, req.body);
+        var newField = formModel.updateFieldById(req.params.formId, req.params.fieldId, req.body);
         res.json(newField);
     }
 }();

@@ -1,7 +1,7 @@
 /**
  * Created by rohitbegani on 3/19/16.
  */
-module.exports = function(app, userModel){
+module.exports = function(app, formModel){
     "use strict";
 
     app.get('/api/assignment/user/:userId/form', findFormByUserId);
@@ -12,17 +12,17 @@ module.exports = function(app, userModel){
 
     function findFormByUserId(req, res) {
         var userId = parseInt(req.params.userId);
-        var form = FormModel.findFormByUserId(userId);
+        var form = formModel.findFormByUserId(userId);
         res.json(form);
     }
 
     function findFormById(req, res) {
-        var form = FormModel.findFormById(req.params.formId);
+        var form = formModel.findFormById(req.params.formId);
         res.json(form);
     }
 
     function deleteForm(req, res) {
-        FormModel.deleteForm(req.params.formId);
+        formModel.deleteForm(req.params.formId);
         res.send(200);
     }
 
@@ -30,12 +30,12 @@ module.exports = function(app, userModel){
         var userId = parseInt(req.params.userId);
         var newForm = req.body;
         newForm.userId = userId;
-        var form = FormModel.createForm(newForm);
+        var form = formModel.createForm(newForm);
         res.json(form);
     }
 
     function updateForm(req, res) {
-        var form = FormModel.updateForm(req.params.formId, req.body);
+        var form = formModel.updateForm(req.params.formId, req.body);
         res.json(form);
     }
 }();
