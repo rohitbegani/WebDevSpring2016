@@ -22,7 +22,7 @@
             else if ($scope.password !== $scope.password2) {
                 $scope.error = "Passwords must match";
             } else {
-                // Check for existing user + email, if none exists we create a new one
+
                 UserService.findUserByUsername(user.username).then(
                     function(response) {
                         var foundUser = response.data;
