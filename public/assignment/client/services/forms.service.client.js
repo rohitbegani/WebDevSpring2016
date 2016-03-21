@@ -8,20 +8,24 @@
 
         var factory = {};
 
-        factory.createFormForUser = function(userId, form) {
+        factory.createFormForUser = function (userId, form) {
             return $http.post("/api/assignment/user/" + userId + "/form", form);
         };
 
-        factory.findAllFormsForUser = function(userId) {
+        factory.findAllFormsForUser = function (userId) {
             return $http.get("/api/assignment/user/" + userId + "/form");
         };
 
-        factory.deleteFormById = function(formId) {
+        factory.deleteFormById = function (formId) {
             return $http.delete("/api/assignment/form/" + formId);
         };
 
-        factory.updateFormById = function(formId, newForm) {
+        factory.updateFormById = function (formId, newForm) {
             return $http.put("/api/assignment/form/" + formId, newForm);
+        };
+
+        factory.getFormById = function (formId) {
+            return $http.get("/api/assignment/form/" + formId);
         };
 
         return factory;
