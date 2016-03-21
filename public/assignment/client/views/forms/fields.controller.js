@@ -130,7 +130,7 @@
             }
             else {
             }
-            fieldService
+            FieldService
                 .updateField(formId, vm.eField._id, vm.eField)
                 .then(init);
             vm.eField = null;
