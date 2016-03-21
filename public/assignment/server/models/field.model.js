@@ -13,7 +13,7 @@ module.exports = function (uuid, formModel) {
     function createField(formId, field) {
         var form;
         field._id = uuid.v1();
-        form = formModel.findFormById(formId);
+        form = FormModel.findFormById(formId);
         form.fields.push(field);
     }
 
