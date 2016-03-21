@@ -1,13 +1,15 @@
-(function() {
-    "use strict";
+/**
+ * Created by Sanjanamanoj on 2/19/2016.
+ */
+"use strict";
+(function()
+{
     angular
-        .module('FormBuilderApp')
-        .controller("AdminController", AdminController);
+        .module("FormBuilderApp")
+        .controller("AdminController", AdminController)
 
-    function AdminController($rootScope, $scope) {
-        if(!$rootScope.isAdmin){
-            $scope.$location.url('/home');
-        }
+    function AdminController()
+    {
+
     }
 })();
-

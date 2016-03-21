@@ -1,33 +1,36 @@
 (function() {
-    "use strict";
     angular
-        .module('FormBuilderApp')
+        .module("FormBuilderApp")
         .factory("FormService", FormService);
 
     function FormService($http) {
+        var api = {
+            createFormForUser: createFormForUser,
+            findAllFormsForUser: findAllFormsForUser,
+            deleteFormById: deleteFormById,
+            updateFormById: updateFormById,
+            getFormById: getFormById
+        };
+        return api;
 
-        var factory = {};
-
-        factory.createFormForUser = function (userId, form) {
+        function createFormForUser(userId, form){
             return $http.post("/api/assignment/user/" + userId + "/form", form);
-        };
+        }
 
-        factory.findAllFormsForUser = function (userId) {
+        function findAllFormsForUser(userId){
             return $http.get("/api/assignment/user/" + userId + "/form");
-        };
+        }
 
-        factory.deleteFormById = function (formId) {
+        function deleteFormById(formId){
             return $http.delete("/api/assignment/form/" + formId);
-        };
+        }
 
-        factory.updateFormById = function (formId, newForm) {
+        function updateFormById(formId, newForm){
             return $http.put("/api/assignment/form/" + formId, newForm);
-        };
+        }
 
-        factory.getFormById = function (formId) {
+        function getFormById (formId) {
             return $http.get("/api/assignment/form/" + formId);
-        };
-
-        return factory;
+        }
     }
 })();

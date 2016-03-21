@@ -1,32 +1,31 @@
-(function() {
-    "use strict";
+(function(){
     angular
-        .module('FormBuilderApp')
-        .controller("LoginController", LoginController);
+        .module("FormBuilderApp")
+        .controller("LoginController",LoginController);
 
-    function LoginController($scope, $rootScope, UserService) {
+    function LoginController(UserService, $location) {
+        var vm= this;
+        vm.login = login;
 
-        $scope.login = function() {
-            UserService.findUserByUsernameAndPassword($scope.username, $scope.password).then(
-                function(response) {
-                    var user = response.data;
-                    if (user === null) {
-                        $scope.error = "Invalid Username or Password";
-                    } else {
-                        $rootScope.loggedIn = true;
-                        $rootScope.user = user;
-                        for (var i in user.roles) {
-                            if (user.roles[i] === "admin") {
-                                $rootScope.isAdmin = true;
-                            }
-                        }
-                        $scope.$location.url("/profile");
+        function init() {
+        }
+        init();
+
+        function login(user) {
+            if(!user) {
+                return;
+            }
+            UserService.findUserByCredentials({
+                    username: user.username,
+                    password: user.password
+                })
+                .then(function(response){
+                    if(response.data) {
+                        UserService.setCurrentUser(response.data);
+                        $location.url("/profile");
                     }
-                }
-            );
-
-        };
+                });
+        }
 
     }
 })();
-

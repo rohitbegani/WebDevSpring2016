@@ -1,19 +1,14 @@
-(function() {
-    "use strict";
+/**
+ * Created by Sanjanamanoj on 3/19/2016.
+ */
+"use strict";
+
+(function () {
     angular
-        .module('FormBuilderApp')
+        .module("FormBuilderApp")
         .controller("SidebarController", SidebarController);
 
-    function SidebarController($scope) {
-
-        $scope.getClass = function(path) {
-            if ($scope.$location.url() === path) {
-                return 'active';
-            } else if ($scope.$location.url() === "/" && path === "/home") {
-                return 'active';
-            }
-            return '';
-        }
+    function SidebarController($scope, $rootScope, $location) {
+        $scope.$location = $location.url;
     }
 })();
-

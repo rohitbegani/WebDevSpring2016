@@ -1,8 +1,5 @@
-/**
- * Created by rohitbegani on 3/20/16.
- */
-module.exports = function (formModel) {
-
+var forms = require("./form.mock.json");
+module.exports = function (uuid, formModel) {
     var api = {
         createField: createField,
         deleteField: deleteField,
@@ -15,7 +12,7 @@ module.exports = function (formModel) {
 
     function createField(formId, field) {
         var form;
-        //field._id = uuid.v1();
+        field._id = uuid.v1();
         form = formModel.findFormById(formId);
         form.fields.push(field);
     }

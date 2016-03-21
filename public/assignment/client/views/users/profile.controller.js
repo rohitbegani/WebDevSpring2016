@@ -1,26 +1,30 @@
-(function() {
-    "use strict";
+(function(){
     angular
-        .module('FormBuilderApp')
-        .controller("ProfileController", ProfileController);
+        .module("FormBuilderApp")
+        .controller("ProfileController",ProfileController);
 
-    function ProfileController($scope, $rootScope, UserService) {
-        if(!$rootScope.loggedIn){
-            $scope.$location.url('/login');
+    function ProfileController($location, $scope, UserService, $rootScope) {
+        var vm = this;
+        vm.update = update;
+        vm.cu=null;
+        function init() {
+            vm.cu = UserService.getCurrentUser();
+            if (vm.cu == null) {
+                $location.url("/home");
+            }
         }
-        $scope.oldUser = {};
-        angular.copy($rootScope.user, $scope.oldUser);
-        $scope.updateProfile = function() {
-            UserService.updateUser($scope.oldUser._id, $scope.oldUser).then(
-                function(response) {
-                    $rootScope.user = response.data;
-                    $scope.$location.url("/profile");
-                },
-                function(error) {
-                    console.log(error);
-                }
-            );
+        return init();
+
+        function update(user) {
+            UserService
+                .updateUser(vm.cu._id,user)
+                .then(function(response){
+                    if(response.data) {
+                        UserService.setCurrentUser(response.data);
+                        $location.url("/profile");
+                    }
+                });
         }
+
     }
 })();
-

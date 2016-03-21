@@ -1,38 +1,60 @@
 (function() {
-    "use strict";
     angular
-        .module('FormBuilderApp')
+        .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService($http) {
-
-        var factory = {};
-
-        factory.findUserByUsernameAndPassword = function(username, password) {
-            return $http.get("/api/assignment/user?username=" + username + "&password=" + password);
+    function UserService($http, $rootScope) {
+        var api = {
+            findUserByCredentials: findUserByCredentials,
+            setCurrentUser: setCurrentUser,
+            getCurrentUser: getCurrentUser,
+            findAllUsers: findAllUsers,
+            findUserById: findUserById,
+            createUser: createUser,
+            deleteUserById: deleteUserById,
+            updateUser: updateUser,
+            findUserByUsername: findUserByUsername
         };
+        return api;
 
-        factory.findUserByUsername = function(username) {
-            return $http.get("/api/assignment/user?username=" + username);
-        };
+        function findUserByCredentials(credentials) {
+            return $http.get("/api/assignment/user?username="+credentials.username +"&password="+credentials.password);
+        }
 
-        factory.findAllUsers = function() {
+        function findUserByUsername (username) {
+            return $http.get("/api/assignment/user?username="+username);
+        }
+
+        function findUserById(userId){
+            return $http.get("/api/assignment/user/" + userId);
+        }
+
+        function setCurrentUser(user) {
+            $rootScope.currentUser = user;
+            console.log($rootScope.currentUser);
+        }
+
+        function getCurrentUser() {
+            return $rootScope.currentUser;
+        }
+
+        function findAllUsers(){
             return $http.get("/api/assignment/user");
-        };
-
-        factory.createUser = function(user) {
-            return $http.post("/api/assignment/user", user);
-        };
-
-        factory.deleteUserById = function(userId) {
+        }
+        function createUser(user){
+            return $http.post("/api/assignment/user",user);
+        }
+        function deleteUserById(userId){
             return $http.delete("/api/assignment/user/" + userId);
-        };
+        }
 
-        factory.updateUser = function(userId, user) {
+        function updateUser(userId,user){
+            console.log("in user services")
+            console.log(user);
             return $http.put("/api/assignment/user/" + userId, user);
-        };
+        }
 
-        return factory;
+
+
     }
 })();
-

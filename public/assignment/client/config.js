@@ -1,50 +1,49 @@
-(function() {
-    "use strict";
+(function(){
     angular
-        .module('FormBuilderApp')
-        .config(["$routeProvider", declareRoutes]);
+        .module("FormBuilderApp")
+        .config(configuration);
 
-    function declareRoutes($routeProvider) {
-        $routeProvider.
-            when("/", {
+    function configuration($routeProvider){
+        $routeProvider
+            .when("/home",{
                 templateUrl: "views/home/home.view.html",
                 controller: "HomeController"
-            }).
-            when("/home", {
-                templateUrl: "views/home/home.view.html",
-                controller: "HomeController"
-            }).
-            when("/register", {
-                templateUrl: "views/users/register.view.html",
-                controller: "RegisterController"
-            }).
-            when("/login", {
-                templateUrl: "views/users/login.view.html",
-                controller: "LoginController"
-            }).
-            when("/profile", {
+            })
+            .when("/profile",{
                 templateUrl: "views/users/profile.view.html",
-                controller: "ProfileController"
-            }).
-            when("/admin", {
-                templateUrl: "views/admin/admin.view.html",
-                controller: "AdminController"
-            }).
-            when("/forms", {
+                controller:"ProfileController",
+                controllerAs:"model"
+            })
+            .when("/forms",{
                 templateUrl: "views/forms/forms.view.html",
-                controller: "FormsController"
+                controller: "FormController",
+                controllerAs:"model"
+            })
+            .when("/admin",{
+                templateUrl: "views/admin/admin.view.html"
+            })
+            .when("/register",{
+                templateUrl: "views/users/register.view.html",
+                controller: "RegisterController",
+                controllerAs:"model"
+            })
+            .when("/login",{
+                templateUrl: "views/users/login.view.html",
+                controller: "LoginController",
+                controllerAs:"model"
+            })
+            .when("/field",{
+                templateUrl: "views/forms/fields.view.html",
+                controller: "FieldController",
+                controllerAs: "model"
             })
             .when("/form/:formId/field", {
                 templateUrl: "views/forms/fields.view.html",
-                controller: "FieldsController"
-            })
-            .when("/fields", {
-                templateUrl: "views/forms/fields.view.html",
-                controller: "FieldsController"
+                controller: "FieldController",
+                controllerAs: "model"
             })
             .otherwise({
-                redirectTo: "/"
+                redirectTo: "/home"
             });
     }
-
 })();

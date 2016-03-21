@@ -1,74 +1,69 @@
-var mock = require("./user.mock.json");
-
-module.exports = function() {
-    "use strict";
+var users = require("./user.mock.json");
+module.exports = function(uuid) {
     var api = {
-        createUser: createUser,
-        findAllUsers: findAllUsers,
-        findUserById: findUserById,
-        findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
-        updateUser: updateUser,
-        deleteUser: deleteUser
+        findUserByUsername:findUserByUsername,
+        getUsers: getUsers,
+        createUser: createUser,
+        deleteUserById: deleteUserById,
+        findUserById:findUserById,
+        updateUser:updateUser
     };
     return api;
 
-    function createUser(user) {
-        user._id = (new Date).getTime();
-
-        mock.push(user);
-        return user;
-    }
-
-    function findAllUsers() {
-        return mock;
-    }
-
-    function findUserById(userId) {
-        for (var i in mock) {
-            if (mock[i]._id === userId) {
-                return mock[i];
+    function findUserByCredentials(credentials) {
+        for(var u in users) {
+            if( users[u].username === credentials.username &&
+                users[u].password === credentials.password) {
+                return users[u];
             }
         }
         return null;
     }
 
     function findUserByUsername(username) {
-        for (var i in mock) {
-            if (mock[i].username === username) {
-                return mock[i];
+        for(var u in users) {
+            if( users[u].username == username) {
+                return users[u];
             }
         }
         return null;
     }
 
-    function findUserByCredentials(credentials) {
-        for (var i in mock) {
-            if (mock[i].username === credentials.username &&
-                mock[i].password === credentials.password) {
-                return mock[i];
+    function getUsers(){
+        return users;
+    }
+
+    function createUser(newUser){
+        newUser._id = uuid.v1();
+        users.push(newUser);
+        return newUser;
+    }
+
+    function deleteUserById(id){
+        for (var u in users) {
+            if (users[u]._id === id) {
+                users.splice(u, 1);
+            }
+        }
+        return users;
+    }
+
+    function findUserById(id){
+        for (var u in users) {
+            if (users[u]._id == id) {
+                return users[u];
             }
         }
         return null;
     }
 
-    function updateUser(userId, user) {
-        for (var i in mock) {
-            if (mock[i]._id === userId) {
-                mock[i] = user;
-                return mock[i];
+    function updateUser(id,user){
+        for (var u in users) {
+            if (users[u]._id == id) {
+                users[u] = user;
             }
         }
-        return null;
+        return user;
     }
-
-    function deleteUser(userId) {
-        var newUsers = [];
-        for (var i in mock) {
-            if (mock[i]._id !== userId) {
-                newUsers.push(mock[i]);
-            }
-        }
-        mock = newUsers;
-    }
-};
+}
