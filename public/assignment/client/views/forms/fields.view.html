@@ -13,7 +13,7 @@
                 <label>{{field.label}}</label>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="{{field.placeholder}}">
-                    <div class="input-group-btn" ng-include="'views/forms/selection.view.html'"></div>
+                    <div class="input-group-btn" ng-include="'views/forms/selection.html'"></div>
                 </div>
             </td>
             <td ng-switch-when="OPTIONS">
@@ -22,14 +22,14 @@
                     <select class="form-control">
                         <option ng-repeat="op in field.options">{{op.label}}</option>
                     </select>
-                    <div class="input-group-btn" ng-include="'views/forms/selection.view.html'"></div>
+                    <div class="input-group-btn" ng-include="'views/forms/selection.html'"></div>
                 </div>
             </td>
             <td ng-switch-when="TEXTAREA">
                 <label>{{field.label}}</label>
                 <div class="input-group">
                     <textarea class="form-control" placeholder="{{field.placeholder}}"></textarea>
-                    <div class="input-group-btn" ng-include="'views/forms/selection.view.html'"></div>
+                    <div class="input-group-btn" ng-include="'views/forms/selection.html'"></div>
                 </div>
             </td>
             <td ng-switch-when="CHECKBOXES">
@@ -43,7 +43,7 @@
                             <br>
                         </div>
                     </div>
-                    <div class="input-group-btn" ng-include="'views/forms/selection.view.html'"></div>
+                    <div class="input-group-btn" ng-include="'views/forms/selection.html'"></div>
                 </div>
             </td>
             <td ng-switch-when="RADIOS">
@@ -55,14 +55,14 @@
                             {{op.label}}
                         </label>
                     </div>
-                    <div class="input-group-btn" ng-include="'views/forms/selection.view.html'"></div>
+                    <div class="input-group-btn" ng-include="'views/forms/selection.html'"></div>
                 </div>
             </td>
             <td ng-switch-default>
                 <label>{{field.label}}</label>
                 <div class="input-group">
                     <input type="date" placeholder="{{field.placeholder}}" class="form-control">
-                    <div class="input-group-btn" ng-include="'views/forms/selection.view.html'"></div>
+                    <div class="input-group-btn" ng-include="'views/forms/selection.html'"></div>
                 </div>
             </td>
             <br>
