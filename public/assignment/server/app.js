@@ -1,4 +1,5 @@
 module.exports = function(app,uuid) {
+    "use strict";
     var usermodel = require("./models/user.model.js")(uuid);
     var formmodel = require("./models/form.model.js")(uuid);
     var fieldModel = require("./models/field.model.js") (uuid, formmodel);

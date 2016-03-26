@@ -1,5 +1,6 @@
 var forms = require("./form.mock.json");
 module.exports = function (uuid, formModel) {
+    "use strict";
     var api = {
         createField: createField,
         deleteField: deleteField,
