@@ -13,12 +13,18 @@
             .when("/profile",{
                 templateUrl: "views/users/profile.view.html",
                 controller:"ProfileController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve:{
+                    loggedin:getLoggedIn
+                }
             })
             .when("/forms",{
                 templateUrl: "views/forms/forms.view.html",
                 controller: "FormController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve:{
+                    loggedin:getLoggedIn
+                }
             })
             .when("/admin",{
                 templateUrl: "views/admin/admin.view.html"
@@ -36,7 +42,10 @@
             .when("/field",{
                 templateUrl: "views/forms/fields.view.html",
                 controller: "FieldController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    loggedin:getLoggedIn
+                }
             })
             .when("/form/:formId/field", {
                 templateUrl: "views/forms/fields.view.html",
@@ -47,4 +56,25 @@
                 redirectTo: "/home"
             });
     }
+
+    function getLoggedIn(UserService, $q, $location) {
+
+        var deferred = $q.defer();
+
+        UserService
+            .getCurrentUser()
+            .then(function(response) {
+                var currentUser = response.data;
+                if(currentUser) {
+                    UserService.setCurrentUser(currentUser);
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    $location.url("/home");
+                }
+            });
+
+        return deferred.promise;
+    }
+
 })();

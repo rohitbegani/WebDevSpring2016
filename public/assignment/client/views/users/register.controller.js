@@ -11,7 +11,7 @@
 
         function register(user) {
             vm.message = null;
-            if (user == null) {
+            if (!user) {
                 vm.message = "Please fill in the required fields";
                 return;
             }
@@ -27,11 +27,13 @@
                 vm.message = "Passwords must match";
                 return;
             }
-            if (!user.email) {
+            if (!user.emails) {
                 vm.message = "Please provide an email";
                 return;
             }
-
+            var emails = [];
+            emails.push(user.emails);
+            user.emails = emails;
             UserService
                 .createUser(user)
                 .then(function(response){
