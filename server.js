@@ -10,6 +10,7 @@ var multer        = require('multer');
 var bodyParser = require('body-parser');
 var cookieParser  = require('cookie-parser');
 var mongoose      = require('mongoose');
+var passport = require('passport');
 
 var connectionString = 'mongodb://127.0.0.1:27017/form-maker';
 
@@ -34,6 +35,8 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/env', function(req, res){
     res.json(process.env);

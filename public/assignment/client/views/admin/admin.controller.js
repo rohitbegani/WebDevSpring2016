@@ -1,11 +1,66 @@
-(function() {
+(function () {
     "use strict";
     angular
         .module("FormBuilderApp")
-        .controller("AdminController", AdminController)
+        .controller("AdminController", AdminController);
 
-    function AdminController()
+    function AdminController($scope, UserService)
     {
+        var vm = this;
+        vm.remove = remove;
+        vm.update = update;
+        vm.add    = add;
+        vm.select = select;
+        vm.sortField = 'username';
+        vm.order = "false";
 
+        function init() {
+            UserService
+                .findAllUsers()
+                .then(handleSuccess, handleError);
+        }
+        init();
+
+
+        function remove(user, index)
+        {
+            UserService
+                .deleteUser(user._id)
+                .then(function(response) {
+                    vm.users.splice(index,1);
+                });
+        }
+
+        function update(user)
+        {
+            UserService
+                .updateUserById(user._id, user)
+                .then(handleSuccess, handleError);
+        }
+
+
+
+        function add(user)
+        {
+            UserService
+                .createUser(user)
+                .then(handleSuccess, handleError);
+        }
+
+        function select(user)
+        {
+            vm.user = angular.copy(user);
+        }
+
+        function handleSuccess(response) {
+            for(var i in response.data) {
+                response.data[i].roles = response.data[i].roles.toString();
+            }
+            vm.users = response.data;
+        }
+
+        function handleError(error) {
+            vm.error = error;
+        }
     }
 })();

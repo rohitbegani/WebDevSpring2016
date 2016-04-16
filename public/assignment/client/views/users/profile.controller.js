@@ -4,10 +4,10 @@
         .module("FormBuilderApp")
         .controller("ProfileController",ProfileController);
 
-    function ProfileController($location, $scope, UserService, $rootScope) {
+    function ProfileController($location, UserService) {
         var vm = this;
         vm.update = update;
-        vm.cu=null;
+        vm.cu = null;
         function init() {
             UserService.getCurrentUser()
                 .then(

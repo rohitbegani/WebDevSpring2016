@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("FormController",FormController);
 
-    function FormController($location, FormService, $rootScope) {
+    function FormController(FormService, $rootScope) {
 
         var vm = this;
 
@@ -31,6 +31,7 @@
         function addForm(form) {
             FormService
                 .createFormForUser($rootScope.currentUser._id, form)
+                //console.log(doc)
                 .then(init);
         }
 

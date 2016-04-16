@@ -1,5 +1,5 @@
-"use strict";
 (function(){
+    "use strict";
     angular
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
@@ -13,7 +13,7 @@
         vm.deleteField = deleteField;
         vm.addField = addField;
         vm.reorder = reorder;
-        vm.sortfields= sortFields;
+        vm.sortfield = sortField;
         vm.options =
             [
                 'Single Line Text Field',
@@ -85,7 +85,7 @@
 
         }
 
-        function sortFields(start, end) {
+        function sortField(start, end) {
             FieldService
                 .sortFields(formId, start, end)
                 .then(
